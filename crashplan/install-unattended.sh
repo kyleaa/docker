@@ -305,7 +305,7 @@ if [[ $JAVACOMMON == "DOWNLOAD" ]]; then
 	    WGET_PATH=`which wget 2> /dev/null`
 	    if [[ $? == 0 ]]; then
 			echo "    downloading the JRE using wget"
-			$WGET_PATH $JVMURL
+			$WGET_PATH --quiet $JVMURL
 			if [[ $? != 0 ]]; then
 				echo "Unable to download JRE; please check network connection"
 				exit 1
