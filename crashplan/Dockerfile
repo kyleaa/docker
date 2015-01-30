@@ -5,9 +5,10 @@ ADD CrashPlan_3.7.0_Linux.tgz /tmp/
 ADD install-unattended.sh /tmp/CrashPlan-install/install-unattended.sh
 RUN ls /tmp/CrashPlan-install
 RUN cd /tmp/CrashPlan-install/ && ./install-unattended.sh
-ADD run.sh /run.sh
+RUN apt-get install -y supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 4243
 VOLUME /mnt/crashplan 
 
-CMD ["/run.sh"]
+CMD ["/usr/bin/supervisord"]
