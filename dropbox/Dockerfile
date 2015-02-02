@@ -1,11 +1,14 @@
 FROM ubuntu:trusty
 
 RUN apt-get update && apt-get install -y python wget && apt-get clean -y
-RUN cd /root/ && wget -O - "http://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-RUN wget -O /root/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py" && chmod 755 /root/dropbox.py
+RUN mkdir /home/dropbox
+RUN cd /home/dropbox/ && wget -O - "http://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+RUN wget -O /home/dropbox/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py" && chmod 755 /home/dropbox/dropbox.py
 
 ADD run.sh /run.sh
-RUN chmod 755 /run.sh
+RUN chmod 775 /run.sh
 
-VOLUME /root/.dropbox /root/Dropbox
+ENV DROPBOX_UID 1000
+
+VOLUME /home/dropbox/.dropbox /home/dropbox/Dropbox
 CMD ["/run.sh"]
