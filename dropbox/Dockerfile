@@ -1,5 +1,6 @@
 FROM ubuntu:trusty
 
+RUN ln -s -f /bin/true /usr/bin/chfn
 RUN apt-get update && apt-get install -y python wget && apt-get clean -y
 RUN mkdir /home/dropbox
 RUN cd /home/dropbox/ && wget -O - "http://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
