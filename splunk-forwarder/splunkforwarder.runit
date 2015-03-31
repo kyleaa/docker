@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /opt/splunkforwarder/bin/splunk start --accept-license && tail -F /dev/null
