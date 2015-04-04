@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/sabnzbdplus --daemon --config-file /config --server :8080
