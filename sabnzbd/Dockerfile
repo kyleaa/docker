@@ -9,11 +9,12 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty multiverse" >> /etc/apt/sources.list
 
-RUN add-apt-repository -y  ppa:jcfp/ppa && \
+RUN add-apt-repository -y ppa:jcfp/ppa && \
+    add-apt-repository -y ppa:jcfp/sab-addons && \
     apt-get -q update && \
     apt-get install -qy --force-yes python-software-properties software-properties-common \
       sabnzbdplus \
-      par2 python-yenc unzip unrar && \
+      par2 python-yenc unzip unrar python-sabyenc && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
